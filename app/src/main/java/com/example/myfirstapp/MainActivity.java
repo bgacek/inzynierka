@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         navButtonId = menuItem.getItemId();
                         loadSelection(navButtonId);
-                        //menuItem.setChecked(true);
+                        menuItem.setChecked(true);
                         myDrawerLayout.closeDrawers();
                         return true;
                     }
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        loadSelection(0);
+        loadSelection(R.id.nav_home);
 
     }
 

@@ -15,12 +15,12 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
 
-        /*String stream = "http://192.168.0.8:9090";
+        String stream = "http://192.168.0.8:9090";
         WebView webView = (WebView)findViewById(R.id.web_view);
         int width = webView.getWidth();
         int height = webView.getHeight();
         webView.loadUrl(stream +"?width=" +width +"&height=" +height);
-*/
+
 
 
 
