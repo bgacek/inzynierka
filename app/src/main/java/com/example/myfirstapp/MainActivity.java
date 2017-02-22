@@ -1,5 +1,8 @@
 package com.example.myfirstapp;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -55,9 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
         mFragmentManager = getSupportFragmentManager();
 
+        int notificationSelector = getIntent().getIntExtra("selector", R.id.nav_home);
 
 
-        loadSelection(R.id.nav_home);
+
+        loadSelection(notificationSelector);
 
     }
 
@@ -95,7 +100,119 @@ public class MainActivity extends AppCompatActivity {
                 mFragmentTransaction.commit();
                 break;
 
+            case R.id.nav_camera2:
+                Camera2Fragment mCamera2Fragment = new Camera2Fragment();
+                mFragmentTransaction = mFragmentManager.beginTransaction();
+                mFragmentTransaction.replace(R.id.fragmentHolder, mCamera2Fragment);
+                mFragmentTransaction.commit();
+                break;
+
+
         }
+    }
+
+    private void ultraSoundSensor1Notify() {
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Intent mIntent = new Intent(this, MainActivity.class);
+        mIntent.putExtra("selector", R.id.nav_camera1);
+        PendingIntent mPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), mIntent, 0);
+
+        Notification mNotification = new Notification.Builder(this)
+                .setSmallIcon(R.mipmap.ic_photo_camera_black_24dp)
+                .setContentTitle("ULTRASOUND SENSOR 1 TRIGGERED!!!")
+                .setContentText("Ultrasound sensor 1 detected movement, click to get Camera 1 display")
+                .setContentIntent(mPendingIntent)
+                .setShowWhen(true)
+                .setAutoCancel(true)
+                .build();
+
+        mNotificationManager.notify(0, mNotification);
+    }
+
+    private void ultraSoundSensor2Notify() {
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Intent mIntent = new Intent(this, MainActivity.class);
+        mIntent.putExtra("selector", R.id.nav_camera1);
+        PendingIntent mPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), mIntent, 0);
+
+        Notification mNotification = new Notification.Builder(this)
+                .setSmallIcon(R.mipmap.ic_photo_camera_black_24dp)
+                .setContentTitle("ULTRASOUND SENSOR 2 TRIGGERED!!!")
+                .setContentText("Ultrasound sensor 2 detected movement, click to get Camera 1 display")
+                .setContentIntent(mPendingIntent)
+                .setShowWhen(true)
+                .setAutoCancel(true)
+                .build();
+
+        mNotificationManager.notify(0, mNotification);
+    }
+
+    private void camera2Notify() {
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Intent mIntent = new Intent(this, MainActivity.class);
+        mIntent.putExtra("selector", R.id.nav_camera2);
+        PendingIntent mPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), mIntent, 0);
+
+        Notification mNotification = new Notification.Builder(this)
+                .setSmallIcon(R.mipmap.ic_photo_camera_black_24dp)
+                .setContentTitle("Camera 2 TRIGGERED!!!")
+                .setContentText("Camera 2 detected movement, click to get Camera 1 display")
+                .setContentIntent(mPendingIntent)
+                .setShowWhen(true)
+                .setAutoCancel(true)
+                .build();
+
+        mNotificationManager.notify(0, mNotification);
+    }
+
+    private void window1Notifiy() {
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Intent mIntent = new Intent(this, MainActivity.class);
+        mIntent.putExtra("selector", R.id.nav_home);
+        PendingIntent mPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), mIntent, 0);
+
+        Notification mNotification = new Notification.Builder(this)
+                .setSmallIcon(R.mipmap.ic_filter_1_black_24dp)
+                .setContentTitle("WINDOW 1 BREACHED!!!")
+                .setContentText("Window 1 breached, click to open app")
+                .setContentIntent(mPendingIntent)
+                .setShowWhen(true)
+                .setAutoCancel(true)
+                .build();
+
+        mNotificationManager.notify(0, mNotification);
+    }
+
+    private void window2Notifiy() {
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Intent mIntent = new Intent(this, MainActivity.class);
+        mIntent.putExtra("selector", R.id.nav_home);
+        PendingIntent mPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), mIntent, 0);
+
+        Notification mNotification = new Notification.Builder(this)
+                .setSmallIcon(R.mipmap.ic_filter_2_black_24dp)
+                .setContentTitle("WINDOW 2 BREACHED!!!")
+                .setContentText("Window 2 breached, click to open app")
+                .setContentIntent(mPendingIntent)
+                .setShowWhen(true)
+                .setAutoCancel(true)
+                .build();
+
+        mNotificationManager.notify(0, mNotification);
+    }
+
+    private void bellNotifiy() {
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        Notification mNotification = new Notification.Builder(this)
+                .setSmallIcon(R.mipmap.ic_notifications_active_black_24dp)
+                .setContentTitle("SOMEONE AT THE DOOR!!!")
+                .setContentText("Your bell ringing, some wants to visit you")
+                .setShowWhen(true)
+                .setAutoCancel(true)
+                .build();
+
+        mNotificationManager.notify(0, mNotification);
     }
 
 }

@@ -1,8 +1,20 @@
 <resources>
-    <string name="app_name">My First App</string>
+    <string name="app_name">Home Security</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="alarm_button_armed">Armed</string>
+    <string name="alarm_button_disarmed">Disarmed</string>
+    <string name="alarm_button_unsynchronized">Unsynchronized</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="alarm_status">Alarm Status</string>
+    <string name="window_status">Window Status</string>
+    <string name="window1">\u0020 Window 1 \u0020</string>
+    <string name="window2">\u0020 Window 2 \u0020</string>
+    <string name="door_status">Door Status</string>
+    <string name="door_locked">LOCKED</string>
+    <string name="door_unlocked">UNLOCKED</string>
 </resources>
