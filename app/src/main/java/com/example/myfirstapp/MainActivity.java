@@ -3,9 +3,9 @@ package com.example.myfirstapp;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
+import android.graphics.Color;
+import android.media.RingtoneManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -15,9 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         mActionBar.setDisplayHomeAsUpEnabled(true);
 
         mNavigationView = (NavigationView) findViewById(R.id.navView);
-
         mNavigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -59,12 +56,11 @@ public class MainActivity extends AppCompatActivity {
         mFragmentManager = getSupportFragmentManager();
 
         int notificationSelector = getIntent().getIntExtra("selector", R.id.nav_home);
-
-
-
         loadSelection(notificationSelector);
+        bellNotify();
 
     }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -76,11 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(myToggle.onOptionsItemSelected(item)) return true;
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item) || myToggle.onOptionsItemSelected(item);
     }
-
 
 
     private void loadSelection(int position) {
@@ -111,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private void ultraSoundSensor1Notify() {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Intent mIntent = new Intent(this, MainActivity.class);
@@ -128,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
         mNotificationManager.notify(0, mNotification);
     }
+
 
     private void ultraSoundSensor2Notify() {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -147,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         mNotificationManager.notify(0, mNotification);
     }
 
+
     private void camera2Notify() {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Intent mIntent = new Intent(this, MainActivity.class);
@@ -165,7 +161,8 @@ public class MainActivity extends AppCompatActivity {
         mNotificationManager.notify(0, mNotification);
     }
 
-    private void window1Notifiy() {
+
+    private void window1Notify() {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Intent mIntent = new Intent(this, MainActivity.class);
         mIntent.putExtra("selector", R.id.nav_home);
@@ -183,7 +180,8 @@ public class MainActivity extends AppCompatActivity {
         mNotificationManager.notify(0, mNotification);
     }
 
-    private void window2Notifiy() {
+
+    private void window2Notify() {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Intent mIntent = new Intent(this, MainActivity.class);
         mIntent.putExtra("selector", R.id.nav_home);
@@ -201,19 +199,24 @@ public class MainActivity extends AppCompatActivity {
         mNotificationManager.notify(0, mNotification);
     }
 
-    private void bellNotifiy() {
+
+    private void bellNotify() {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         Notification mNotification = new Notification.Builder(this)
                 .setSmallIcon(R.mipmap.ic_notifications_active_black_24dp)
                 .setContentTitle("SOMEONE AT THE DOOR!!!")
                 .setContentText("Your bell ringing, some wants to visit you")
+                .setLights(Color.RED, 3000, 3000)
+                .setVibrate(new long[] {1000, 1000, 1000, 1000})
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setShowWhen(true)
                 .setAutoCancel(true)
                 .build();
 
         mNotificationManager.notify(0, mNotification);
     }
+
 
 }
 
